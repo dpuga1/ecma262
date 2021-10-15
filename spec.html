@@ -1523,13 +1523,17 @@
               <emu-xref href="#sec-relational-operators" title></emu-xref>,
               via <emu-xref href="#sec-islessthan" title></emu-xref>
             </td>
-            <td rowspan="2">
+            <td>
               Boolean or *undefined* (for unordered inputs)
             </td>
           </tr>
+
           <tr>
             <td>
               BigInt::lessThan
+            </td>
+            <td>
+              Boolean
             </td>
           </tr>
 
@@ -1683,7 +1687,6 @@
           </tbody>
         </table>
       </emu-table>
-      <p>The above abstract operations are not a part of the ECMAScript language; they are defined here solely to aid the specification of the semantics of the ECMAScript language.</p>
       <p>Because the numeric types are in general not convertible without loss of precision or truncation, the ECMAScript language provides no implicit conversion among these types. Programmers must explicitly call `Number` and `BigInt` functions to convert among types when calling a function which requires another type.</p>
       <emu-note>
         <p>The first and subsequent editions of ECMAScript have provided, for certain operators, implicit numeric conversions that could lose precision or truncate. These legacy implicit conversions are maintained for backward compatibility, but not provided for BigInt in order to minimize opportunity for programmer error, and to leave open the option of generalized <em>value types</em> in a future edition.</p>
