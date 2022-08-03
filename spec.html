@@ -22097,12 +22097,15 @@
                 1. Let _lhsName_ be the sole element of BoundNames of _lhs_.
                 1. Let _lhsRef_ be ! ResolveBinding(_lhsName_).
             1. If _destructuring_ is *false*, then
-              1. If _lhsRef_ is an abrupt completion, then
-                1. Let _status_ be _lhsRef_.
-              1. Else if _lhsKind_ is ~lexicalBinding~, then
-                1. Let _status_ be Completion(InitializeReferencedBinding(_lhsRef_, _nextValue_)).
+              1. If _lhsKind_ is either ~assignment~ or ~varBinding~, then
+                1. Assert: _lhsRef_ is a Completion Record.
+                1. If _lhsRef_ is an abrupt completion, then
+                  1. Let _status_ be _lhsRef_.
+                1. Else,
+                  1. Let _status_ be Completion(PutValue(_lhsRef_.[[Value]], _nextValue_)).
               1. Else,
-                1. Let _status_ be Completion(PutValue(_lhsRef_, _nextValue_)).
+                1. Assert: _lhsKind_ is ~lexicalBinding~.
+                1. Let _status_ be Completion(InitializeReferencedBinding(_lhsRef_, _nextValue_)).
             1. Else,
               1. If _lhsKind_ is ~assignment~, then
                 1. Let _status_ be Completion(DestructuringAssignmentEvaluation of _assignmentPattern_ with argument _nextValue_).
